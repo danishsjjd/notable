@@ -4,9 +4,11 @@ import { Menu, Moon, Sun } from "lucide-react"
 
 import { useTheme } from "next-themes"
 import Image from "next/image"
+import Link from "next/link"
 
 import { imageLoader } from "@/utils/image-loader"
 
+import Notable from "@/components/Notable"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
@@ -20,8 +22,8 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-14 max-w-screen-2xl items-center px-8">
         <div className="mr-4 hidden md:flex">
-          <a className="mr-6 flex items-center space-x-2" href="/">
-            <span className="hidden font-bold sm:inline-block">Notable</span>
+          <a className="mr-6 flex items-center space-x-2 py-3 dark:text-white" href="/">
+            <Notable width={80} />
           </a>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <a className="text-foreground/60 transition-colors hover:text-foreground/80" href="#features">
@@ -63,10 +65,14 @@ const Header = () => {
                 <Image loader={imageLoader} src="/" alt="Profile picture" width={500} height={500} />
               </Button>
             ) : (
-              <>
-                <Button variant="ghost">Login</Button>
-                <Button variant="default">Sign Up</Button>
-              </>
+              <div className="flex items-center gap-2">
+                <Button variant="ghost" asChild>
+                  <Link href={"/dashboard/auth"}>Login</Link>
+                </Button>
+                <Button variant="default" asChild>
+                  <Link href={"/dashboard/auth"}>Sign Up</Link>
+                </Button>
+              </div>
             )}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
