@@ -63,22 +63,27 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
       return
     }
 
-    signUp.mutate(data, {
-      async onSuccess(data) {
-        if (data.error) {
-          toast.error(data.error.message)
+    signUp.mutate(
+      { ...data, options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/dashboard/login` } },
+      {
+        async onSuccess(data) {
+          if (data.error) {
+            toast.error(data.error.message)
 
-          return
-        }
+            return
+          }
 
-        const isEmailVerified = data.data.user?.user_metadata?.email_verified
-        if (typeof isEmailVerified === "boolean" && isEmailVerified === false) {
-          toast.success("Verification email is sent!")
-        }
-
-        router.push("/dashboard/login")
-      },
-    })
+          const isEmailVerified = data.data.user?.user_metadata?.email_verified
+          if (typeof isEmailVerified === "boolean" && isEmailVerified === false) {
+            toast.success("Verification email is sent!")
+            form.reset()
+          } else {
+            toast.info("An account with the associated email already exists. Please login.")
+            router.push("/dashboard/login")
+          }
+        },
+      }
+    )
   }
 
   const state = {
