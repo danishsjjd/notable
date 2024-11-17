@@ -23,9 +23,9 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-14 max-w-screen-2xl items-center px-8">
         <div className="mr-4 hidden md:flex">
-          <a className="mr-6 flex items-center space-x-2 py-3 dark:text-white" href="/">
+          <Link className="mr-6 flex items-center space-x-2 py-3 dark:text-white" href="/">
             <Notable width={80} />
-          </a>
+          </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <a className="text-foreground/60 transition-colors hover:text-foreground/80" href="#features">
               Features

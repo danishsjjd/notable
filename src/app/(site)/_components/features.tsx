@@ -2,8 +2,6 @@ import { Bold, Image, List } from "lucide-react"
 
 import Link from "next/link"
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-
 export default function Features() {
   const features = [
     {

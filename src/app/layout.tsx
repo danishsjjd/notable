@@ -48,8 +48,10 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const cookie = await cookies()
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const supabase = useSupabaseServer(cookie)
   const user = await supabase.auth.getUser()
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
