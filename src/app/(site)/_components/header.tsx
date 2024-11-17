@@ -1,8 +1,7 @@
 "use client"
 
-import { Menu, Moon, Sun } from "lucide-react"
+import { Menu } from "lucide-react"
 
-import { useTheme } from "next-themes"
 import Link from "next/link"
 
 import useSupabaseBrowser from "@/utils/supabase/supabase-browser"
@@ -15,7 +14,6 @@ import { useUser } from "@/context/auth-context"
 import { toast } from "sonner"
 
 const Header = () => {
-  const { setTheme } = useTheme()
   const auth = useUser(false)
   const supabase = useSupabaseBrowser()
 
@@ -27,15 +25,15 @@ const Header = () => {
             <Notable width={80} />
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
-            <a className="text-foreground/60 transition-colors hover:text-foreground/80" href="#features">
-              Features
-            </a>
-            <a className="text-foreground/60 transition-colors hover:text-foreground/80" href="#pricing">
-              Pricing
-            </a>
-            <a className="text-foreground/60 transition-colors hover:text-foreground/80" href="#about">
+            <Link replace className="text-foreground/60 transition-colors hover:text-foreground/80" href="#about">
               About
-            </a>
+            </Link>
+            <Link replace className="text-foreground/60 transition-colors hover:text-foreground/80" href="#features">
+              Features
+            </Link>
+            <Link replace className="text-foreground/60 transition-colors hover:text-foreground/80" href="#pricing">
+              Pricing
+            </Link>
           </nav>
         </div>
 
@@ -48,13 +46,13 @@ const Header = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             <DropdownMenuItem>
-              <a href="#features">Features</a>
+              <Link href="#about">About</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <a href="#pricing">Pricing</a>
+              <Link href="#features">Features</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <a href="#about">About</a>
+              <Link href="#pricing">Pricing</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -87,20 +85,6 @@ const Header = () => {
                 </Button>
               </div>
             )}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Toggle Theme" className="ml-2">
-                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  <span className="sr-only">Toggle theme</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </nav>
         </div>
       </div>
