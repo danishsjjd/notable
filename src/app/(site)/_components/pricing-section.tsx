@@ -1,11 +1,14 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
+
+import { toast } from "sonner"
 
 const PricingSection = () => (
   <section className="mx-auto w-full max-w-screen-2xl px-8 py-12 md:py-24 lg:py-32" id="pricing">
     <h2 className="mb-4 text-center text-3xl font-bold tracking-tighter sm:text-5xl">Pricing Plans</h2>
     <p className="mb-8 text-center text-muted-foreground md:text-xl">Choose the plan that fits your needs</p>
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-      {/* // TODO: links to subscribe */}
       {[
         {
           name: "Basic",
@@ -48,7 +51,11 @@ const PricingSection = () => (
               </li>
             ))}
           </ul>
-          <Button className="mt-auto" variant={plan.name === "Pro" ? "default" : "outline"}>
+          <Button
+            className="mt-auto"
+            variant={plan.name === "Pro" ? "default" : "outline"}
+            onClick={() => toast.info("Under construction")}
+          >
             {plan.name === "Enterprise" ? "Contact Sales" : "Get Started"}
           </Button>
         </div>

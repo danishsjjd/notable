@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 
 import { imageLoader } from "@/utils/image-loader"
 
@@ -17,8 +18,9 @@ const HeroSection = () => (
           </p>
         </div>
         <div className="flex flex-col gap-2 min-[400px]:flex-row">
-          {/* // TODO: sign in */}
-          <Button size="lg">Get Started</Button>
+          <Button size="lg" asChild>
+            <Link href={"/dashboard/signup"}>Get Started</Link>
+          </Button>
           <Button size="lg" variant="outline">
             Learn More
           </Button>

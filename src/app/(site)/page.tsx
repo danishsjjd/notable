@@ -6,7 +6,7 @@ import PricingSection from "./_components/pricing-section"
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-svh flex-col">
       <Header />
       <main className="flex-1">
         <HeroSection />

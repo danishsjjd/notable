@@ -1,8 +1,16 @@
 import type { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
 import localFont from "next/font/local"
+import { cookies } from "next/headers"
+
+import useSupabaseServer from "@/utils/supabase/supabase-server"
+
+import { ReactQueryClientProvider } from "@/components/ReactQueryClientProvider"
+import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css"
+
+import { AuthProvider } from "@/context/auth-context"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,17 +42,25 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookie = await cookies()
+  const supabase = useSupabaseServer(cookie)
+  const user = await supabase.auth.getUser()
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
+        <ReactQueryClientProvider>
+          <AuthProvider user={user.data.user}>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              {children}
+              <Toaster richColors />
+            </ThemeProvider>
+          </AuthProvider>
+        </ReactQueryClientProvider>
       </body>
     </html>
   )

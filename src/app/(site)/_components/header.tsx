@@ -3,20 +3,21 @@
 import { Menu, Moon, Sun } from "lucide-react"
 
 import { useTheme } from "next-themes"
-import Image from "next/image"
 import Link from "next/link"
 
-import { imageLoader } from "@/utils/image-loader"
+import useSupabaseBrowser from "@/utils/supabase/supabase-browser"
 
 import Notable from "@/components/Notable"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
+import { useUser } from "@/context/auth-context"
+import { toast } from "sonner"
+
 const Header = () => {
   const { setTheme } = useTheme()
-
-  // TODO: login state
-  const isLoggedIn = false
+  const auth = useUser(false)
+  const supabase = useSupabaseBrowser()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -60,17 +61,29 @@ const Header = () => {
 
         <div className="ml-auto flex items-center space-x-2 justify-self-end md:justify-end">
           <nav className="flex items-center">
-            {isLoggedIn ? (
-              <Button variant="ghost" className="w-9 px-0">
-                <Image loader={imageLoader} src="/" alt="Profile picture" width={500} height={500} />
+            {auth?.user ? (
+              <Button
+                variant="ghost"
+                onClick={() =>
+                  supabase.auth.signOut().then((data) => {
+                    if (data.error) {
+                      toast.error(data.error.message)
+                      return
+                    }
+
+                    window.location.reload()
+                  })
+                }
+              >
+                Logout
               </Button>
             ) : (
               <div className="flex items-center gap-2">
                 <Button variant="ghost" asChild>
-                  <Link href={"/dashboard/auth"}>Login</Link>
+                  <Link href={"/dashboard/login"}>Login</Link>
                 </Button>
                 <Button variant="default" asChild>
-                  <Link href={"/dashboard/auth"}>Sign Up</Link>
+                  <Link href={"/dashboard/signup"}>Sign Up</Link>
                 </Button>
               </div>
             )}
