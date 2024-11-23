@@ -24,7 +24,7 @@ const NavigationBar = () => {
   const [isPending, setIsPending] = useMockIsPending()
 
   return (
-    <div className="h-full w-[300px] min-w-[300px] max-w-[300px] shrink-0 space-y-[30px] bg-background-primary py-1.5">
+    <div className="h-full w-[300px] min-w-[300px] max-w-[300px] shrink-0 space-y-[30px] overflow-auto bg-background-primary py-1.5">
       <div className="px-1.5">
         <Popover>
           <PopoverTrigger asChild>
@@ -54,7 +54,7 @@ const NavigationBar = () => {
             )}
           </button>
         </div>
-        <div className="flex flex-col gap-[5px]">
+        <div className="flex flex-col gap-[5px] overflow-auto">
           {[
             { name: "Personal", id: "1", active: true },
             { name: "Work", id: "2", active: false },
@@ -89,8 +89,8 @@ const WorkspaceCard = () => {
           <AvatarFallback className="rounded-lg text-3xl">{workspaceAvatar}</AvatarFallback>
         </Avatar>
         <div className="truncate">
-          <p className="text-text-primary truncate text-xl font-medium">{workspaceName} Notable</p>
-          <p className="text-text-secondary text-sm">
+          <p className="truncate text-xl font-medium text-primary">{workspaceName} Notable</p>
+          <p className="text-sm text-text-secondary">
             {plan} · <Pluralize count={members} singular="member" />
           </p>
         </div>
@@ -111,7 +111,7 @@ const UserWorkspaces = () => {
     <div className="mt-3 w-full space-y-2 border-t border-t-zinc-600 bg-secondary px-3 py-2">
       <p className="text-xs text-zinc-400">{user.email}</p>
       {[{ id: "1" }].map((workspace) => (
-        <Button key={workspace.id} variant={"ghost"} className="hover:bg-muted-theme w-full justify-start">
+        <Button key={workspace.id} variant={"ghost"} className="w-full justify-start hover:bg-white/15">
           <Avatar className="size-5 rounded-sm bg-background">
             <AvatarFallback className="rounded-sm bg-background">{workspaceAvatar}</AvatarFallback>
           </Avatar>
