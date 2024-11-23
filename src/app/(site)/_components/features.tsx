@@ -43,7 +43,7 @@ export default function Features() {
         <div className="mt-16 text-center">
           <h3 className="mb-4 text-2xl font-semibold text-gray-800">Ready to elevate your content?</h3>
           <Link
-            href={"/dashboard/signup"}
+            href={"/signup"}
             className="rounded-full bg-blue-600 px-6 py-2 text-white transition-colors duration-300 hover:bg-blue-700"
           >
             Get Started

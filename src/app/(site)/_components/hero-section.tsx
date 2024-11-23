@@ -19,7 +19,7 @@ const HeroSection = () => (
         </div>
         <div className="flex flex-col gap-2 min-[400px]:flex-row">
           <Button size="lg" asChild>
-            <Link href={"/dashboard/signup"}>Get Started</Link>
+            <Link href={"/signup"}>Get Started</Link>
           </Button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import NavigationBar from "./navigation-bar"
+import NavigationBar from "./_components/navigation-bar"
 
 const Dashboard = () => {
   return (

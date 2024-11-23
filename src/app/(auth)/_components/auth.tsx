@@ -56,7 +56,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
 
           if (data.data.session) {
             setUser(data.data.user)
-            router.push("/dashboard")
+            router.push("/notable")
           }
         },
       })
@@ -65,7 +65,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
     }
 
     signUp.mutate(
-      { ...data, options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/dashboard/login` } },
+      { ...data, options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/login` } },
       {
         async onSuccess(data) {
           if (data.error) {
@@ -80,7 +80,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
             form.reset()
           } else {
             toast.info("An account with the associated email already exists. Please login.")
-            router.push("/dashboard/login")
+            router.push("/login")
           }
         },
       }

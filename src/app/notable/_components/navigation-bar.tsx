@@ -3,7 +3,7 @@
 import { GearIcon } from "@radix-ui/react-icons"
 import { Check, ChevronDown, FolderIcon, FolderOpenIcon, PlusIcon } from "lucide-react"
 
-import useMockIsPending from "../hooks/use-mock-is-pending"
+import useMockIsPending from "../../../hooks/use-mock-is-pending"
 
 import { Pluralize } from "@/utils/pluralize"
 

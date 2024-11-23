@@ -1,3 +1,5 @@
+import { ReactQueryClientProvider } from "@/components/react-query-client-provider"
+
 import type { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
 import { Source_Sans_3 } from "next/font/google"
@@ -5,7 +7,6 @@ import { cookies } from "next/headers"
 
 import useSupabaseServer from "@/utils/supabase/supabase-server"
 
-import { ReactQueryClientProvider } from "@/components/ReactQueryClientProvider"
 import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css"

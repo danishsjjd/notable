@@ -6,7 +6,7 @@ import Link from "next/link"
 
 import useSupabaseBrowser from "@/utils/supabase/supabase-browser"
 
-import Notable from "@/components/Notable"
+import Notable from "@/components/notable-brand-logo"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
@@ -26,7 +26,7 @@ const Header = () => {
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {auth.user && (
-              <Link href="/dashboard" className="text-foreground/60 transition-colors hover:text-foreground/80">
+              <Link href="/notable" className="text-foreground/60 transition-colors hover:text-foreground/80">
                 Notes
               </Link>
             )}
@@ -52,7 +52,7 @@ const Header = () => {
           <DropdownMenuContent align="start">
             {auth.user && (
               <DropdownMenuItem>
-                <Link href="/dashboard">Notes</Link>
+                <Link href="/notable">Notes</Link>
               </DropdownMenuItem>
             )}
             <DropdownMenuItem>
@@ -88,10 +88,10 @@ const Header = () => {
             ) : (
               <div className="flex items-center gap-2">
                 <Button variant="ghost" asChild>
-                  <Link href={"/dashboard/login"}>Login</Link>
+                  <Link href={"/login"}>Login</Link>
                 </Button>
                 <Button variant="default" asChild>
-                  <Link href={"/dashboard/signup"}>Sign Up</Link>
+                  <Link href={"/signup"}>Sign Up</Link>
                 </Button>
               </div>
             )}
