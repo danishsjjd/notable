@@ -4,7 +4,7 @@ import NotesNavigation from "./_components/notes-navigation"
 
 const Dashboard = () => {
   return (
-    <div className="flex h-svh max-h-svh min-h-svh min-w-[1250px]">
+    <div className="body-overflow-y-hidden flex h-svh max-h-svh min-h-svh min-w-[1250px]">
       <NavigationBar />
       <NotesNavigation />
       <Note />
