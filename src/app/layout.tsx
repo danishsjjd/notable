@@ -52,7 +52,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${sourceSans3.variable} ${sourceSans3.variable} font-source-sans-3 antialiased`}
+        className={`${sourceSans3.variable} ${sourceSans3.variable} font-source-sans-3 overflow-y-hidden antialiased`}
         suppressHydrationWarning
       >
         <ReactQueryClientProvider>

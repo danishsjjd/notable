@@ -1,15 +1,13 @@
-"use client"
-
 import NavigationBar from "./_components/navigation-bar"
+import Note from "./_components/note"
 import NotesNavigation from "./_components/notes-navigation"
 
 const Dashboard = () => {
   return (
-    <div className="flex h-svh max-h-svh min-h-svh">
+    <div className="flex h-svh max-h-svh min-h-svh min-w-[1250px]">
       <NavigationBar />
       <NotesNavigation />
-
-      <div className="grow">My Notable!</div>
+      <Note />
     </div>
   )
 }
