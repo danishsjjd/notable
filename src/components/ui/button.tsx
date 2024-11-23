@@ -6,17 +6,16 @@ import { cn } from "@/lib/utils"
 import { type VariantProps, cva } from "class-variance-authority"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        default: "text-text-primary bg-background-primary hover:bg-background-secondary",
+        destructive: "bg-red-600 text-white hover:bg-red-700",
+        outline: "hover:bg-surface hover:text-text-primary border border-border bg-background-primary",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        expandIcon: "group relative bg-primary text-primary-foreground hover:bg-primary/90",
+        expandIcon: "text-text-primary group relative bg-background-primary hover:bg-background-secondary",
         ringHover:
           "bg-primary text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:ring-2 hover:ring-primary/90 hover:ring-offset-2",
         shine:
@@ -78,7 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps & ButtonIconProps
             <Icon />
           </div>
         )}
-        {isPending && <SpinnerAnimation className="w-5 text-black" />}
+        {isPending && <SpinnerAnimation className="w-5" />}
         <Slottable>{props.children}</Slottable>
         {Icon && iconPlacement === "right" && (
           <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">

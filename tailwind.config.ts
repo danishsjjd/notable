@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "source-sans-3": "var(--font-source-sans-3)",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -51,6 +54,10 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+
+        "background-primary": "#181818",
+        "background-secondary": "#1C1C1C",
+        "background-accent-blue": "#312EB5",
       },
       borderRadius: {
         lg: "var(--radius)",

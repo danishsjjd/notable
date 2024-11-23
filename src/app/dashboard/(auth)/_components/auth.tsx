@@ -1,6 +1,7 @@
 "use client"
 
 import { useMutation } from "@tanstack/react-query"
+import { ArrowRightIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 
 import { useRouter } from "next/navigation"
@@ -97,6 +98,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
     },
   }[page]
 
+  const isPending = signUp.isPending || signIn.isPending
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="w-full max-w-md rounded-lg bg-background p-6 shadow-lg">
@@ -138,10 +140,13 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
                 />
               </div>
               <Button
+                Icon={ArrowRightIcon}
+                iconPlacement="right"
+                variant={"expandIcon"}
                 type="submit"
                 className="w-full"
-                disabled={signUp.isPending}
-                isPending={signUp.isPending || signIn.isPending}
+                disabled={isPending}
+                isPending={isPending}
               >
                 <span>{state.actionButtonText}</span>
               </Button>

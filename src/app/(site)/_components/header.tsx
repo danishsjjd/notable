@@ -25,6 +25,11 @@ const Header = () => {
             <Notable width={80} />
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
+            {auth.user && (
+              <Link href="/dashboard" className="text-foreground/60 transition-colors hover:text-foreground/80">
+                Notes
+              </Link>
+            )}
             <Link replace className="text-foreground/60 transition-colors hover:text-foreground/80" href="#about">
               About
             </Link>
@@ -45,6 +50,11 @@ const Header = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
+            {auth.user && (
+              <DropdownMenuItem>
+                <Link href="/dashboard">Notes</Link>
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem>
               <Link href="#about">About</Link>
             </DropdownMenuItem>

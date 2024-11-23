@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { ThemeProvider } from "next-themes"
-import localFont from "next/font/local"
+import { Source_Sans_3 } from "next/font/google"
 import { cookies } from "next/headers"
 
 import useSupabaseServer from "@/utils/supabase/supabase-server"
@@ -12,15 +12,11 @@ import "./globals.css"
 
 import { AuthProvider } from "@/context/auth-context"
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-})
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const sourceSans3 = Source_Sans_3({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "block",
+  variable: "--font-source-sans-3",
 })
 
 export const metadata: Metadata = {
@@ -54,7 +50,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
+      <body
+        className={`${sourceSans3.variable} ${sourceSans3.variable} font-source-sans-3 antialiased`}
+        suppressHydrationWarning
+      >
         <ReactQueryClientProvider>
           <AuthProvider user={user.data.user}>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

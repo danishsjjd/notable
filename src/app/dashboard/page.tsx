@@ -1,10 +1,13 @@
 "use client"
 
-import { useUser } from "@/context/auth-context"
+import NavigationBar from "./navigation-bar"
 
 const Dashboard = () => {
-  const { user } = useUser()
-  return <div>Hello 👋, {user.email}</div>
+  return (
+    <div className="h-svh max-h-svh min-h-svh">
+      <NavigationBar />
+    </div>
+  )
 }
 
 export default Dashboard
