@@ -48,8 +48,8 @@ const notes = [
 
 const NotesNavigation = () => {
   return (
-    <div className="w-[350px] min-w-[350px] max-w-[350px] overflow-auto bg-background-secondary px-5 pb-[30px]">
-      <h2 className="sticky top-0 bg-background-secondary py-[30px] text-xl font-semibold text-white">Personal</h2>
+    <div className="bg-background-secondary w-[350px] max-w-[350px] min-w-[350px] overflow-auto px-5 pb-[30px]">
+      <h2 className="bg-background-secondary sticky top-0 py-[30px] text-xl font-semibold text-white">Personal</h2>
       <div className="space-y-5">
         {notes.map((note) => (
           <NoteCard key={note.id} {...note} />

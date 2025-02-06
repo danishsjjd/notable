@@ -20,7 +20,7 @@ const title = "Reflection on the Month of June"
 
 const Note = () => {
   return (
-    <div className="grow space-y-[30px] overflow-auto bg-background-primary p-12">
+    <div className="bg-background-primary grow space-y-[30px] overflow-auto p-12">
       <div className="flex items-center justify-between gap-1.5">
         <h1 className="text-3xl font-semibold">{title}</h1>
         <button className="grid size-5 shrink-0 place-items-center rounded-full border border-white/40 text-white/40">
@@ -33,7 +33,7 @@ const Note = () => {
         <Field Icon={Folder} fieldKey="Folder" value="Personal" />
       </div>
 
-      <div className="sticky top-[-50px] flex items-center gap-[30px] border-y border-y-white/10 bg-background-primary py-2.5">
+      <div className="bg-background-primary sticky top-[-50px] flex items-center gap-[30px] border-y border-y-white/10 py-2.5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="flex items-center gap-2">

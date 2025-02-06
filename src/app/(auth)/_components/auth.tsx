@@ -101,7 +101,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
   const isPending = signUp.isPending || signIn.isPending
   return (
     <div className="flex h-screen items-center justify-center">
-      <div className="w-full max-w-md rounded-lg bg-background p-6 shadow-lg">
+      <div className="bg-background w-full max-w-md rounded-lg p-6 shadow-lg">
         <div className="space-y-4">
           <div className="text-center">
             <h1 className="text-2xl font-bold">{state.title}</h1>
