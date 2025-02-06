@@ -17,11 +17,9 @@ export const AuthProvider = ({ children, user: _user }: { children: ReactNode; u
   return <AuthContext.Provider value={{ user, setUser: setUser as SetUser }}>{children}</AuthContext.Provider>
 }
 
-export function useUser(validate: false): AuthContextUnAuthenticated
-export function useUser(validate?: true): AuthContextAuthenticated
-export function useUser(validate = true) {
+export function useUser() {
   const auth = useContext(AuthContext)
-  if (auth === null && validate) throw new Error("useUser can only be call inside AuthProvider")
+  if (auth === null) throw new Error("useUser can only be call inside AuthProvider")
 
   return auth
 }

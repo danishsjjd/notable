@@ -14,7 +14,7 @@ import { useUser } from "@/context/auth-context"
 import { toast } from "sonner"
 
 const Header = () => {
-  const auth = useUser(false)
+  const auth = useUser()
   const supabase = useSupabaseBrowser()
 
   return (

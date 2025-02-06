@@ -28,7 +28,7 @@ const FormSchema = z.object({
 const AuthPage = ({ page }: { page: "login" | "signup" }) => {
   const router = useRouter()
 
-  const { setUser } = useUser(false)
+  const { setUser } = useUser()
 
   const supabase = useSupabaseBrowser()
   const signUp = useMutation({ mutationFn: (props: SignUpWithPasswordCredentials) => supabase.auth.signUp(props) })
