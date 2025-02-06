@@ -29,7 +29,7 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="rounded-lg bg-white p-6 shadow transition-all duration-300 ease-in-out hover:shadow-lg"
+              className="rounded-lg bg-white p-6 shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg"
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
                 <feature.icon className="h-6 w-6 text-blue-600" />

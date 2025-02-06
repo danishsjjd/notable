@@ -18,25 +18,25 @@ const Header = () => {
   const supabase = useSupabaseBrowser()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-14 max-w-screen-2xl items-center px-8">
+    <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
+      <div className="container mx-auto flex h-14 max-w-(--breakpoint-2xl) items-center px-8">
         <div className="mr-4 hidden md:flex">
           <Link className="mr-6 flex items-center space-x-2 py-3 dark:text-white" href="/">
             <Notable width={80} />
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {auth.user && (
-              <Link href="/notable" className="text-foreground/60 transition-colors hover:text-foreground/80">
+              <Link href="/notable" className="text-foreground/60 hover:text-foreground/80 transition-colors">
                 Notes
               </Link>
             )}
-            <Link replace className="text-foreground/60 transition-colors hover:text-foreground/80" href="#about">
+            <Link replace className="text-foreground/60 hover:text-foreground/80 transition-colors" href="#about">
               About
             </Link>
-            <Link replace className="text-foreground/60 transition-colors hover:text-foreground/80" href="#features">
+            <Link replace className="text-foreground/60 hover:text-foreground/80 transition-colors" href="#features">
               Features
             </Link>
-            <Link replace className="text-foreground/60 transition-colors hover:text-foreground/80" href="#pricing">
+            <Link replace className="text-foreground/60 hover:text-foreground/80 transition-colors" href="#pricing">
               Pricing
             </Link>
           </nav>
@@ -45,7 +45,7 @@ const Header = () => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="md:hidden">
-              <Menu className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+              <Menu className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all" />
               <span className="sr-only">Toggle menu</span>
             </Button>
           </DropdownMenuTrigger>
