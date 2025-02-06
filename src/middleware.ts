@@ -2,6 +2,16 @@ import { type NextRequest } from "next/server"
 
 import { updateSession } from "./utils/supabase/middleware"
 
+// if (typeof global.fetch === "function") {
+//   const originalFetch = global.fetch
+//   global.fetch = async (...args) => {
+//     const [input] = args
+//     const url = typeof input === "string" ? input : ((input as any)?.url as any)
+//     console.log("Fetch call to:", url)
+//     return originalFetch(...args)
+//   }
+// }
+
 export async function middleware(request: NextRequest) {
   return await updateSession(request)
 }

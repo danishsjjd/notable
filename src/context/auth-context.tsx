@@ -1,6 +1,8 @@
 "use client"
 
-import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from "react"
+import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react"
+
+import useSupabaseBrowser from "@/utils/supabase/supabase-browser"
 
 import { User } from "@supabase/supabase-js"
 
@@ -13,6 +15,25 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 export const AuthProvider = ({ children, user: _user }: { children: ReactNode; user: User | null }) => {
   const [user, setUser] = useState<User | null>(() => _user)
+  const supabase = useSupabaseBrowser()
+
+  useEffect(() => {
+    const {
+      data: {
+        subscription: { unsubscribe },
+      },
+    } = supabase.auth.onAuthStateChange((user, session) => {
+      if (session?.user) {
+        setUser(session?.user)
+      } else {
+        setUser(null)
+      }
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [supabase])
 
   return <AuthContext.Provider value={{ user, setUser: setUser as SetUser }}>{children}</AuthContext.Provider>
 }

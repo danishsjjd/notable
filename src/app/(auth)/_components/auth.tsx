@@ -20,9 +20,12 @@ import { z } from "zod"
 
 const FormSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(5, {
-    message: "Password must be at least 5 characters.",
-  }),
+  password: z
+    .string()
+    .min(5, {
+      message: "Password must be at least 5 characters.",
+    })
+    .or(z.literal("")),
 })
 
 const AuthPage = ({ page }: { page: "login" | "signup" }) => {
@@ -35,6 +38,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
   const signIn = useMutation({
     mutationFn: (props: SignUpWithPasswordCredentials) => supabase.auth.signInWithPassword(props),
   })
+  const magicLink = useMutation({ mutationFn: (email: string) => supabase.auth.signInWithOtp({ email }) })
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -45,6 +49,21 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
   })
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
+    if (data.password === "") {
+      magicLink.mutate(data.email, {
+        async onSuccess(data) {
+          if (data.error) {
+            toast.error(data.error.message)
+
+            return
+          }
+
+          toast.success("Please check your mail!")
+        },
+      })
+      return
+    }
+
     if (page === "login") {
       signIn.mutate(data, {
         onSuccess(data) {
@@ -98,7 +117,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
     },
   }[page]
 
-  const isPending = signUp.isPending || signIn.isPending
+  const isPending = signUp.isPending || signIn.isPending || magicLink.isPending
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="bg-background w-full max-w-md rounded-lg p-6 shadow-lg">
@@ -115,7 +134,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{page === "signup" && "Work "}Email</FormLabel>
+                      <FormLabel>{page === "signup" && "Work "}Email*</FormLabel>
                       <FormControl>
                         <Input type="text" {...field} />
                       </FormControl>
@@ -130,7 +149,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{page === "signup" && "Create "}Password</FormLabel>
+                      <FormLabel>{page === "signup" && "Create "}Password (optional)</FormLabel>
                       <FormControl>
                         <Input type="password" {...field} autoComplete={"false"} />
                       </FormControl>
