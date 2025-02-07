@@ -28,7 +28,7 @@ const FormSchema = z.object({
     .or(z.literal("")),
 })
 
-const AuthPage = ({ page }: { page: "login" | "signup" }) => {
+const AuthPage = ({ page }: { page: "signin" | "signup" }) => {
   const router = useRouter()
 
   const { setUser } = useUser()
@@ -64,7 +64,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
       return
     }
 
-    if (page === "login") {
+    if (page === "signin") {
       signIn.mutate(data, {
         onSuccess(data) {
           if (data.error) {
@@ -84,7 +84,7 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
     }
 
     signUp.mutate(
-      { ...data, options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/login` } },
+      { ...data, options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL!}/signin` } },
       {
         async onSuccess(data) {
           if (data.error) {
@@ -98,8 +98,8 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
             toast.success("Verification email is sent!")
             form.reset()
           } else {
-            toast.info("An account with the associated email already exists. Please login.")
-            router.push("/login")
+            toast.info("An account with the associated email already exists. Please Signin.")
+            router.push("/signin")
           }
         },
       }
@@ -107,9 +107,9 @@ const AuthPage = ({ page }: { page: "login" | "signup" }) => {
   }
 
   const state = {
-    login: {
-      title: "Login to your Notable account",
-      actionButtonText: "Login",
+    signin: {
+      title: "Sign in to your Notable account",
+      actionButtonText: "Sign in",
     },
     signup: {
       title: "Register your Notable account",
