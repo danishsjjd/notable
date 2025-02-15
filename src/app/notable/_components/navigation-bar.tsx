@@ -109,7 +109,7 @@ const UserWorkspaces = () => {
   const { user } = useUser()
   return (
     <div className="bg-secondary mt-3 w-full space-y-2 border-t border-t-zinc-600 px-3 py-2">
-      <p className="text-xs text-zinc-400">{user.email}</p>
+      <p className="text-xs text-zinc-400">{user?.email}</p>
       {[{ id: "1" }].map((workspace) => (
         <Button key={workspace.id} variant={"ghost"} className="w-full justify-start hover:bg-white/15">
           <Avatar className="bg-background size-5 rounded-sm">

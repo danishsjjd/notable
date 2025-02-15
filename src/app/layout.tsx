@@ -45,6 +45,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const cookie = await cookies()
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const supabase = useSupabaseServer(cookie)
 
   // TODO: every request will call the user endpoint twice: once inside middleware
