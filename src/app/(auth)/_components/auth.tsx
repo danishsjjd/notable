@@ -75,7 +75,7 @@ const AuthPage = ({ page }: { page: "signin" | "signup" }) => {
 
           if (data.data.session) {
             setUser(data.data.user)
-            router.push("/notable")
+            router.push("/app")
           }
         },
       })

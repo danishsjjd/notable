@@ -26,7 +26,7 @@ const Header = () => {
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {auth.user && (
-              <Link href="/notable" className="text-foreground/60 hover:text-foreground/80 transition-colors">
+              <Link href="/app" className="text-foreground/60 hover:text-foreground/80 transition-colors">
                 Notes
               </Link>
             )}
@@ -52,7 +52,7 @@ const Header = () => {
           <DropdownMenuContent align="start">
             {auth.user && (
               <DropdownMenuItem>
-                <Link href="/notable">Notes</Link>
+                <Link href="/app">Notes</Link>
               </DropdownMenuItem>
             )}
             <DropdownMenuItem>

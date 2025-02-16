@@ -49,7 +49,7 @@ export async function updateSession(request: NextRequest) {
     (request.nextUrl.pathname.startsWith("/signup") || request.nextUrl.pathname.startsWith("/signin"))
   ) {
     const url = request.nextUrl.clone()
-    url.pathname = "/notable"
+    url.pathname = "/app"
     return NextResponse.redirect(url)
   }
 
