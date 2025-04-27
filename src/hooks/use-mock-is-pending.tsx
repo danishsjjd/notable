@@ -1,16 +1,16 @@
-import { useCallback, useState } from "react"
+import { useCallback, useState } from "react";
 
 const useMockIsPending = () => {
-  const [isPending, _setIsPending] = useState(false)
+  const [isPending, _setIsPending] = useState(false);
 
   const setIsPending = useCallback((duration = 1000) => {
-    _setIsPending(true)
+    _setIsPending(true);
     setTimeout(() => {
-      _setIsPending(false)
-    }, duration)
-  }, [])
+      _setIsPending(false);
+    }, duration);
+  }, []);
 
-  return [isPending, setIsPending] as const
-}
+  return [isPending, setIsPending] as const;
+};
 
-export default useMockIsPending
+export default useMockIsPending;

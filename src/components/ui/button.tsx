@@ -1,21 +1,24 @@
-import { Slot, Slottable } from "@radix-ui/react-slot"
-import * as React from "react"
+import { Slot, Slottable } from "@radix-ui/react-slot";
+import * as React from "react";
 
-import SpinnerAnimation from "@/assets/icons/spinner-animation.svg"
-import { cn } from "@/lib/utils"
-import { type VariantProps, cva } from "class-variance-authority"
+import SpinnerAnimationSvg from "@/assets/icons/spinner-animation-svg";
+import { cn } from "@/lib/utils";
+import { type VariantProps, cva } from "class-variance-authority";
 
 const buttonVariants = cva(
   "ring-offset-background-primary focus-visible:ring-border inline-flex items-center justify-center gap-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "text-text-primary bg-background-primary hover:bg-background-secondary",
+        default:
+          "text-text-primary bg-background-primary hover:bg-background-secondary",
         destructive: "bg-red-600 text-white hover:bg-red-700",
-        outline: "hover:bg-surface hover:text-text-primary border-border bg-background-primary border",
+        outline:
+          "hover:bg-surface hover:text-text-primary border-border bg-background-primary border",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        expandIcon: "text-text-primary group bg-background-primary hover:bg-background-secondary relative",
+        expandIcon:
+          "text-text-primary group bg-background-primary hover:bg-background-secondary relative",
         ringHover:
           "bg-primary text-primary-foreground hover:bg-primary/90 hover:ring-primary/90 transition-all duration-300 hover:ring-2 hover:ring-offset-2",
         shine:
@@ -41,30 +44,46 @@ const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 interface IconProps {
-  Icon: React.ElementType
-  iconPlacement: "left" | "right"
+  Icon: React.ElementType;
+  iconPlacement: "left" | "right";
 }
 
 interface IconRefProps {
-  Icon?: never
-  iconPlacement?: undefined
+  Icon?: never;
+  iconPlacement?: undefined;
 }
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-  isPending?: boolean
+  asChild?: boolean;
+  isPending?: boolean;
 }
 
-export type ButtonIconProps = IconProps | IconRefProps
+export type ButtonIconProps = IconProps | IconRefProps;
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps & ButtonIconProps>(
-  ({ className, variant, size, asChild = false, Icon, iconPlacement, isPending, disabled, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+const Button = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & ButtonIconProps
+>(
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      Icon,
+      iconPlacement,
+      isPending,
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
+    const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
@@ -77,7 +96,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps & ButtonIconProps
             <Icon />
           </div>
         )}
-        {isPending && <SpinnerAnimation className="w-5" />}
+        {isPending && <SpinnerAnimationSvg className="w-5" />}
         <Slottable>{props.children}</Slottable>
         {Icon && iconPlacement === "right" && (
           <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
@@ -85,9 +104,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps & ButtonIconProps
           </div>
         )}
       </Comp>
-    )
+    );
   }
-)
-Button.displayName = "Button"
+);
+Button.displayName = "Button";
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };
