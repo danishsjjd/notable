@@ -1,8 +1,7 @@
 import SpinnerAnimationSvg from "@/assets/icons/spinner-animation-svg";
 import NavigationBar from "@/components/app/navigation-bar";
-import Note from "@/components/app/note";
-import NotesNavigation from "@/components/app/notes-navigation";
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+
+import { createFileRoute, Outlet, useRouter } from "@tanstack/react-router";
 import { api } from "convex/_generated/api";
 import { useConvexAuth, useQuery } from "convex/react";
 import { useEffect } from "react";
@@ -38,8 +37,8 @@ function App() {
   return (
     <div className="body-overflow-y-hidden flex h-svh max-h-svh min-h-svh min-w-[1250px]">
       <NavigationBar />
-      <NotesNavigation />
-      <Note />
+
+      <Outlet />
     </div>
   );
 }

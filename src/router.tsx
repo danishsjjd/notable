@@ -3,6 +3,7 @@ import { createRouter as createTanstackRouter } from "@tanstack/react-router";
 import { routerWithQueryClient } from "@tanstack/react-router-with-query";
 import * as TanstackQuery from "./integrations/tanstack-query/root-provider";
 import { routeTree } from "./routeTree.gen";
+import { ConvexQueryCacheProvider } from "convex-helpers/react/cache";
 
 export function createRouter() {
   const router = routerWithQueryClient(
@@ -19,7 +20,8 @@ export function createRouter() {
         <ConvexAuthProvider
           client={TanstackQuery.getContext().convexQueryClient.convexClient}
         >
-          {children}
+          {/* // TODO!: cache provider not working (test navigating between home and app routes) */}
+          <ConvexQueryCacheProvider>{children}</ConvexQueryCacheProvider>
         </ConvexAuthProvider>
       ),
     }),
